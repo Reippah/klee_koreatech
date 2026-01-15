@@ -58,7 +58,9 @@ def run_full_pipeline(task_id: str, file_path: str, original_filename: str):
                 timeout=3600 
             )
             step2_end = time.time()
-            task_db[task_id]["durations"]["step2_vggt"] = round(step2_end - step2_start, 2)
+            step2_duration = round(step2_end - step2_start, 2)
+            task_db[task_id]["durations"]["step2_vggt"] = step2_duration
+            logger.info(f"[{task_id}] 단계 2 완료: {step2_duration}초")
         else:
             raise FileNotFoundError(f"VGGT 스크립트 없음: {PATH_VGGT_SCRIPT}")
 
