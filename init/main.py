@@ -22,13 +22,10 @@ logger = logging.getLogger("VideoPipeline")
 app = FastAPI()
 
 # --- 환경 및 경로 설정 ---
-PY_VGGT = "/home/viclab/venv/vggt/bin/python"
-PY_3DGS = "/home/viclab/venv/3dgs/bin/python"
-PATH_VGGT_DIR = "/home/viclab/vggt"
-PATH_VGGT_SCRIPT = "/home/viclab/vggt/vggt_to_COLMAP.py"
-PATH_3DGS_DIR = "/home/viclab/3dgs"
-PATH_3DGS_SCRIPT = "/home/viclab/3dgs/3dgs.py"
-BASE_DATA_DIR = "/home/viclab/init"
+PY_VGGT = "/mnt/sdcard/venv/vggt/bin/python"
+PATH_VGGT_DIR = "/mnt/sdcard/klee_koreatech/vggt"
+PATH_VGGT_SCRIPT = "/mnt/sdcard/klee_koreatech/vggt/vggt_to_COLMAP.py"
+BASE_DATA_DIR = "/mnt/sdcard/klee_koreatech/init"
 
 # 작업 상태 및 소요 시간을 저장할 메모리 DB
 task_db: Dict[str, Dict] = {}
@@ -37,7 +34,7 @@ def run_full_pipeline(task_id: str, file_path: str, original_filename: str):
     # 환경 변수 복사 및 설정
     env = os.environ.copy()
     env["LD_LIBRARY_PATH"] = "/usr/local/cuda/lib64:" + env.get("LD_LIBRARY_PATH", "")
-    processed_folder = os.path.join(BASE_DATA_DIR, f"processed_{task_id}")
+    processed_folder = os.path.join(BASE_DATA_DIR, "result", f"processed_{task_id}")
     pipeline_start_time = time.time() # 전체 시작 시간
     
     try:
@@ -46,7 +43,7 @@ def run_full_pipeline(task_id: str, file_path: str, original_filename: str):
         logger.info(f"[{task_id}] 단계 1: 전처리 시작")
         
         step1_start = time.time()
-        process_video_task(file_path, task_id, interval_seconds=0.5)
+        processed_folder = process_video_task(file_path, task_id, interval_seconds=0.5)
         step1_end = time.time()
         
         # 소요 시간 계산 및 저장 (소수점 둘째자리까지)
@@ -79,24 +76,6 @@ def run_full_pipeline(task_id: str, file_path: str, original_filename: str):
         logger.info(f"[{task_id}] 단계 3: 3DGS 최적화 중...")
         
         step3_start = time.time()
-        try:
-        # PY_3DGS 가상환경의 파이썬으로 3dgs.py 실행
-            subprocess.run(
-                [PY_3DGS, PATH_3DGS_SCRIPT, "--input", processed_folder],
-                cwd=PATH_3DGS_DIR,
-                env=env,  # 수정된 환경 변수 전달
-                check=True,
-                timeout=7200
-            )
-            step3_end = time.time()
-    
-            step3_duration = round(step3_end - step3_start, 2)
-            task_db[task_id]["durations"]["step3_3dgs"] = step3_duration
-            logger.info(f"[{task_id}] 단계 3 완료: {step3_duration}초 소요")
-
-        except Exception as e:
-            logger.error(f"[{task_id}] 3DGS 단계 실패: {e}")
-            raise e
 
         # 전체 완료 처리
         task_db[task_id]["status"] = "COMPLETED"

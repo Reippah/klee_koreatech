@@ -25,7 +25,7 @@ def process_video_task(file_path: str, task_id: str, interval_seconds: float, ta
         return
 
     # 결과물 저장 폴더 경로 설정: 원본 파일의 상위 부모 폴더 아래에 'processed_ID' 형식으로 생성
-    output_folder = video_path.parent.parent / f"processed_{task_id}"
+    output_folder = video_path.parent.parent / "result" / f"processed_{task_id}"
     output_folder.mkdir(parents=True, exist_ok=True)
     
     # OpenCV를 이용한 비디오 캡처 객체 생성
@@ -87,6 +87,8 @@ def process_video_task(file_path: str, task_id: str, interval_seconds: float, ta
         cap.release()
         
     logging.info(f"작업 종료: 총 {saved_count}개의 프레임이 '{output_folder}'에 저장되었습니다.")
+
+    return str(output_folder)
 
 # --- 함수 호출 예시 ---
 # if __name__ == "__main__":
