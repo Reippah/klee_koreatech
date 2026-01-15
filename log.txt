@@ -1,0 +1,57 @@
+(init) viclab@ubuntu:~/init$ python main.py 
+INFO:     Started server process [107807]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:41870 - "POST /upload-video HTTP/1.1" 200 OK
+[INFO] [5d08c7e3-2142-4895-81d3-12efbe6aaada] 단계 1: 전처리 시작
+[INFO] 분석 정보 - 파일: 5d08c7e3-2142-4895-81d3-12efbe6aaada.mp4 | FPS: 29.97010673968785 | 설정 간격: 0.5s
+[INFO] 프레임 추출 프로세스를 시작합니다...
+[INFO] 작업 종료: 총 28개의 프레임이 '/home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada'에 저장되었습니다.
+[INFO] [5d08c7e3-2142-4895-81d3-12efbe6aaada] 단계 1 완료: 9.46초 소요
+[INFO] [5d08c7e3-2142-4895-81d3-12efbe6aaada] 단계 2: VGGT 분석 중...
+Loading VGGT model...
+Processing 28 images...
+/home/viclab/vggt/vggt_to_COLMAP.py:111: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(dtype=dtype):
+/home/viclab/vggt/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+Organizing images for 3DGS...
+Exporting points3D...
+COLMAP dataset created at: /home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada
+[INFO] [5d08c7e3-2142-4895-81d3-12efbe6aaada] 단계 2 완료: 88.45초 소요
+[INFO] [5d08c7e3-2142-4895-81d3-12efbe6aaada] 단계 3: 3DGS 최적화 중...
+INFO:3DGS_Step:3DGS 학습 시작: /home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada
+Optimizing /home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada/output_3dgs
+Output folder: /home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada/output_3dgs [13/01 16:06:58]
+Tensorboard not available: not logging progress [13/01 16:06:58]
+------------LLFF HOLD------------- [13/01 16:06:58]
+Reading camera 28/28 [13/01 16:06:58]
+Converting point3d.bin to .ply, will happen only the first time you open the scene. [13/01 16:06:58]
+Loading Training Cameras [13/01 16:07:45]
+Traceback (most recent call last):
+  File "/home/viclab/3dgs/gaussian-splatting/train.py", line 282, in <module>
+    training(lp.extract(args), op.extract(args), pp.extract(args), args.test_iterations, args.save_iterations, args.checkpoint_iterations, args.start_checkpoint, args.debug_from)
+  File "/home/viclab/3dgs/gaussian-splatting/train.py", line 51, in training
+    scene = Scene(dataset, gaussians)
+  File "/home/viclab/3dgs/gaussian-splatting/scene/__init__.py", line 73, in __init__
+    self.train_cameras[resolution_scale] = cameraList_from_camInfos(scene_info.train_cameras, resolution_scale, args, scene_info.is_nerf_synthetic, False)
+  File "/home/viclab/3dgs/gaussian-splatting/utils/camera_utils.py", line 73, in cameraList_from_camInfos
+    camera_list.append(loadCam(args, id, c, resolution_scale, is_nerf_synthetic, is_test_dataset))
+  File "/home/viclab/3dgs/gaussian-splatting/utils/camera_utils.py", line 63, in loadCam
+    return Camera(resolution, colmap_id=cam_info.uid, R=cam_info.R, T=cam_info.T, 
+  File "/home/viclab/3dgs/gaussian-splatting/scene/cameras.py", line 89, in __init__
+    self.camera_center = self.world_view_transform.inverse()[3, :3]
+RuntimeError: Error in dlopen: /home/viclab/venv/3dgs/lib/python3.10/site-packages/torch/lib/libtorch_cuda_linalg.so: undefined symbol: cusolverDnXsyevBatched_bufferSize, version libcusolver.so.11
+ERROR:3DGS_Step:3DGS 학습 중 오류 발생: Command '['/home/viclab/venv/3dgs/bin/python', '/home/viclab/3dgs/gaussian-splatting/train.py', '-s', '/home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada', '-m', '/home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada/output_3dgs', '--iterations', '7000', '--eval']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/home/viclab/3dgs/3dgs.py", line 56, in <module>
+    run_3dgs_training(args.input, output_dir)
+  File "/home/viclab/3dgs/3dgs.py", line 41, in run_3dgs_training
+    process = subprocess.run(command, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/viclab/venv/3dgs/bin/python', '/home/viclab/3dgs/gaussian-splatting/train.py', '-s', '/home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada', '-m', '/home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada/output_3dgs', '--iterations', '7000', '--eval']' returned non-zero exit status 1.
+[ERROR] [5d08c7e3-2142-4895-81d3-12efbe6aaada] 3DGS 단계 실패: Command '['/home/viclab/venv/3dgs/bin/python', '/home/viclab/3dgs/3dgs.py', '--input', '/home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada']' returned non-zero exit status 1.
+[ERROR] [5d08c7e3-2142-4895-81d3-12efbe6aaada] 오류 발생: Command '['/home/viclab/venv/3dgs/bin/python', '/home/viclab/3dgs/3dgs.py', '--input', '/home/viclab/init/processed_5d08c7e3-2142-4895-81d3-12efbe6aaada']' returned non-zero exit status 1.
+
