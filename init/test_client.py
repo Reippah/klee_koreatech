@@ -21,4 +21,3 @@ with open(file_path, "rb") as f:
     # 6. 서버로부터 받은 응답 결과(JSON 형태)를 파싱하여 화면에 출력
     # 예: {"status": "success", "message": "파일 업로드 완료"} 등의 메시지 확인 가능
     print(response.json())
-  
