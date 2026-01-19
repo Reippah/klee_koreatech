@@ -49,5 +49,5 @@ def visualize_colmap(checkpoint_path: str):
 
 if __name__ == "__main__":
     # COLMAP sparse 결과가 있는 경로 (cameras.bin, images.bin 등이 있는 폴더)
-    COLMAP_PATH = "/mnt/sdcard/klee_koreatech/init/processed_decbcd19-98d0-4623-a3e2-5cce1c812332/sparse/0" 
+    COLMAP_PATH = "~/jetson_workspace/init/result/processed_3261aa84-7674-4a96-b9bb-4e518ebaa264/sparse/0" 
     visualize_colmap(COLMAP_PATH)

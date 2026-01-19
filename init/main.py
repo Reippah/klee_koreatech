@@ -6,7 +6,7 @@ import time
 from typing import Dict
 from fastapi import FastAPI, UploadFile, File, BackgroundTasks, HTTPException
 import subprocess
-from preprocessor import process_zip_task  # 수정된 함수 임포트
+from preprocessor import process_zip_task
 
 # 로깅 설정
 logging.basicConfig(
