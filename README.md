@@ -2,3 +2,7 @@
 
 /mnt/sdcard/klee_koreatech/init/result/processed_3261aa84-7674-4a96-b9bb-4e518ebaa264/sparse/0
 ~/workspace/klee_koreatech/adop/ADOP
+
+
+find ~/workspace/klee_koreatech/adop/ADOP -maxdepth 6 -type f -perm -111 \( -name "*colmap*" -o -name "*adop*" \) -print
+
