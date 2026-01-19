@@ -1,13 +1,5 @@
 # 한국기술교육대학교 26-1 졸업설계 캡스톤디자인
 
-/mnt/sdcard/klee_koreatech/init/result/processed_3261aa84-7674-4a96-b9bb-4e518ebaa264/sparse/0
-~/workspace/klee_koreatech/adop/ADOP
-
-
-find ~/workspace/klee_koreatech/adop/ADOP -maxdepth 6 -type f -perm -111 \( -name "*colmap*" -o -name "*adop*" \) -print
-
-
-
 1. 블러 이미지 검출 및 제거 (Blur Detection)
 
 3DGS나 COLMAP 기반의 알고리즘은 흐릿한 이미지에서 특징점을 찾지 못해 결과물에 '노이즈(Floaters)'가 생기거나 정렬에 실패합니다.
