@@ -6,3 +6,39 @@
 
 find ~/workspace/klee_koreatech/adop/ADOP -maxdepth 6 -type f -perm -111 \( -name "*colmap*" -o -name "*adop*" \) -print
 
+
+
+1. 블러 이미지 검출 및 제거 (Blur Detection)
+
+3DGS나 COLMAP 기반의 알고리즘은 흐릿한 이미지에서 특징점을 찾지 못해 결과물에 '노이즈(Floaters)'가 생기거나 정렬에 실패합니다.
+
+    기술: Laplacian Variance Method를 사용하여 이미지의 선명도를 점수로 환산합니다.
+
+    효과: 초점이 맞지 않거나 움직임 때문에 번진(Motion Blur) 이미지를 사전에 필터링하여 파이프라인의 정확도를 높입니다.
+
+
+(샤프닝 기능 추가)
+
+기존 로직에 sharpen_image 함수를 추가하고, 블러 점수에 따라 **'매우 흐림(삭제)', '약간 흐림(보정 후 사용)', '선명(그대로 사용)'**의 3단계로 구분하여 처리하도록 개선했습니다.
+
+
+2. 적응형 히스토그램 균일화 (CLAHE)
+
+조명이 너무 어둡거나 밝은 곳이 섞여 있으면 특징점 추출이 어렵습니다.
+
+    기술: CLAHE (Contrast Limited Adaptive Histogram Equalization).
+
+    효과: 이미지의 대비를 국소적으로 개선하여 그림자 부분이나 밝은 부분의 디테일을 살려줍니다. 이는 VGGT가 더 정교하게 특징점을 매칭하도록 돕습니다.
+    
+
+3. 화면 비율 유지 및 패딩 (Aspect Ratio Preservation)
+
+현재 코드에서 target_size=(518, 518)로 리사이징하고 있는데, 원본 이미지의 비율을 무시하고 강제로 늘리면 카메라 내인성(Intrinsics) 데이터가 왜곡되어 3D 복원 품질이 급격히 저하됩니다.
+
+    기술: Letterboxing / Padding.
+
+    효과: 원본 비율을 유지하면서 부족한 부분은 검은색(또는 회색)으로 채워 518x518을 만듭니다. 이렇게 해야 나중에 카메라 파라미터를 계산할 때 오류가 적습니다.
+
+
+
+  
