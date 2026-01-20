@@ -34,3 +34,4 @@
 
 
   
+pip install <사용하고자 하는 모듈> --index-url https://pypi.jetson-ai-lab.io/jp6/cu126
