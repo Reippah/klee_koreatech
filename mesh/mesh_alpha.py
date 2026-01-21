@@ -37,7 +37,7 @@ def main():
     pcd, _ = pcd.remove_statistical_outlier(nb_neighbors=40, std_ratio=1.0)
     
     # 균일한 면 생성을 위해 다운샘플링
-    voxel_size = 0.003 
+    voxel_size = 0.002
     pcd_ds = pcd.voxel_down_sample(voxel_size=voxel_size)
     print(f"[OK] Downsampled to {len(pcd_ds.points)} points.")
 
