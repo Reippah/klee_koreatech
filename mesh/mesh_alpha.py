@@ -6,11 +6,11 @@ import open3d as o3d
 # =========================
 # 경로 설정
 # =========================
-input_path = "/home/viclab/workspace/klee_koreatech/vggt/vggt_for_3dgs/sparse/0"
+input_path = "/mnt/sdcard/klee_koreatech/init/result/processed_22fd5f31-4eee-4ae4-98a9-491d841dd8dd"
 output_path = "/home/viclab/workspace/klee_koreatech/mesh_output/"
 os.makedirs(output_path, exist_ok=True)
 
-dataname = "points3D.ply"
+dataname = "reconstruction.ply"
 ply_path = os.path.join(input_path, dataname)
 out_mesh_path = os.path.join(output_path, "alpha_mesh_final.ply")
 
