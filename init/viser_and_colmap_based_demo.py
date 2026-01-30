@@ -11,34 +11,33 @@ import trimesh
 import cv2
 from tqdm import tqdm
 
-# VGGT 관련 유틸리티 (패키지 경로 확인 필요)
 from vggt.models.vggt import VGGT
 from vggt.utils.load_fn import load_and_preprocess_images_square
 from vggt.utils.pose_enc import pose_encoding_to_extri_intri
-from vggt.utils.geometry import unproject_depth_map_to_point_map, closed_form_inverse_se3
-from vggt.dependency.track_predict import predict_tracks
-from vggt.dependency.np_to_pycolmap import batch_np_matrix_to_pycolmap
+from vggt.utils.geometry import closed_form_inverse_se3
 
 class VGGTJetsonIntegrated:
     def __init__(self, model_url=None, device="cuda"):
         self.device = device
-        self.dtype = torch.float16 # Jetson 메모리 최적화
+        self.dtype = torch.float16
         print(f"[{self.device}] VGGT 모델 로딩 중...")
         
         self.model = VGGT()
         if model_url is None:
             model_url = "https://huggingface.co/facebook/VGGT-1B/resolve/main/model.pt"
         
-        state_dict = torch.hub.load_state_dict_from_url(model_url, map_location=self.device)
+        if os.path.exists(model_url):
+            state_dict = torch.load(model_url, map_location=self.device)
+        else:
+            state_dict = torch.hub.load_state_dict_from_url(model_url, map_location=self.device)
+            
         self.model.load_state_dict(state_dict)
         self.model.eval().to(self.device)
         print("모델 로딩 완료.")
 
     @torch.no_grad()
     def process_scene(self, image_folder, use_ba=False, mask_sky=True):
-        """
-        [최종 수정본] 전처리 -> 추론 -> 후처리(필터링/스케일)
-        """
+        # 1. 이미지 로드
         image_paths = sorted(glob.glob(os.path.join(image_folder, "*")))
         if not image_paths:
             raise ValueError(f"경로에 이미지가 없습니다: {image_folder}")
@@ -46,98 +45,101 @@ class VGGTJetsonIntegrated:
         vggt_res = 518
         high_res = 1024
         
-        print(f"이미지 {len(image_paths)}장 전처리 시작...")
-        images_hr, original_coords = load_and_preprocess_images_square(image_paths, high_res)
+        print(f"이미지 {len(image_paths)}장 처리 시작...")
+        # images_hr: (Batch, N, 3, 1024, 1024) - 여기서 고화질 원본을 들고 있습니다.
+        images_hr, _ = load_and_preprocess_images_square(image_paths, high_res)
         images_hr = images_hr.to(self.device)
-        scale_ratio = high_res / vggt_res
         
+        # 모델 입력용으로 518x518로 줄임
         images_vggt = F.interpolate(images_hr, size=(vggt_res, vggt_res), mode="bilinear")
         
+        # 2. VGGT 추론
         print("VGGT 추론 중...")
-        # 최신 PyTorch API 권장 방식 반영
         with torch.amp.autocast('cuda', dtype=self.dtype):
-            preds = self.model(images_vggt)
-            
-        extrinsic, intrinsic = pose_encoding_to_extri_intri(preds["pose_enc"], (vggt_res, vggt_res))
-        depth_map = preds["depth"].squeeze(0).cpu().float().numpy()
-        depth_conf = preds["depth_conf"].squeeze(0).cpu().float().numpy()
+            predictions = self.model(images_vggt)
+
+        # 3. 데이터 추출
+        # 3-1. 카메라 포즈
+        extrinsic, intrinsic = pose_encoding_to_extri_intri(predictions["pose_enc"], (vggt_res, vggt_res))
         extrinsic = extrinsic.squeeze(0).cpu().float().numpy()
         intrinsic = intrinsic.squeeze(0).cpu().float().numpy()
 
-        # 품질 향상을 위한 하늘 제거 로직 (선택 사항)
-        if mask_sky:
-            # 원본 demo_viser 품질을 내려면 여기서 실제 sky segmentation을 수행해야 합니다.
-            # 일단은 신뢰도 필터링을 강화하는 방향으로 보완합니다.
-            pass
-
-        points_3d = unproject_depth_map_to_point_map(depth_map, extrinsic, intrinsic)
+        # 3-2. World Points (모델 예측 3D 좌표 사용)
+        world_points = predictions["world_points"].squeeze(0).cpu().float().numpy()
+        world_conf = predictions["world_points_conf"].squeeze(0).cpu().float().numpy()
         
-        # [품질 보정] 차원 에러 수정 및 고품질 색상 추출
-        # images_vggt: [S, 3, H, W] -> [S, H, W, 3] -> [-1, 3]
-        flat_colors = (images_vggt.permute(0, 2, 3, 1).cpu().numpy() * 255).astype(np.uint8).reshape(-1, 3)
-        flat_points = points_3d.reshape(-1, 3)
-        flat_conf = depth_conf.reshape(-1)
+        # 3-3. 색상 추출 (★ 여기가 핵심 수정 사항: High-Res 적용 ★)
+        # images_hr을 다시 518 크기로 줄이되, 모델을 거치지 않은 원본 색상을 사용
+        # (Batch, N, 3, 1024, 1024) -> squeeze -> (N, 3, 1024, 1024)
+        input_hr_tensor = images_hr.squeeze(0)
+        
+        colors_hr_resized = F.interpolate(
+            input_hr_tensor, 
+            size=(vggt_res, vggt_res), 
+            mode="bilinear", 
+            align_corners=False
+        )
+        
+        # (N, 3, H, W) -> (N, H, W, 3) 순서로 변경
+        colors = colors_hr_resized.permute(0, 2, 3, 1).cpu().float().numpy()
+        
+        # 값 범위 안전하게 클리핑 (0.0 ~ 1.0)
+        colors = np.clip(colors, 0, 1)
+        flat_colors = (colors.reshape(-1, 3) * 255).astype(np.uint8)
 
-        # [품질 보정] 하위 30% 신뢰도 포인트를 날려 품질을 높입니다.
-        conf_thresh = np.percentile(flat_conf, 30)
-        combined_mask = (flat_conf >= conf_thresh) & (flat_conf > 0.05)
+        # 3-4. Shape 맞추기
+        flat_points = world_points.reshape(-1, 3)
+        flat_conf = world_conf.reshape(-1)
 
-        # BA 최적화 (사용 시에만 작동)
-        if use_ba:
-            print("BA 최적화 중 (Memory-Safe 모드)...")
-            try:
-                pred_tracks, pred_vis, pred_confs, points_3d_ba, points_rgb = predict_tracks(
-                    images_hr, conf=depth_conf, points_3d=points_3d, 
-                    max_query_pts=1024, fine_tracking=False # Jetson 최적화 설정
-                )
-                
-                intrinsic_hr = intrinsic.copy()
-                intrinsic_hr[:, :2, :] *= scale_ratio
-                
-                track_mask = pred_vis > 0.2
-                recons, _ = batch_np_matrix_to_pycolmap(
-                    points_3d_ba, extrinsic, intrinsic_hr, pred_tracks, 
-                    np.array([high_res, high_res]), # numpy array로 변환
-                    masks=track_mask, points_rgb=points_rgb
-                )
-                # pycolmap 라이브러리 버전 에러 발생 시 여기에서 멈출 수 있음
-                pycolmap.bundle_adjustment(recons, pycolmap.BundleAdjustmentOptions())
-            except Exception as e:
-                print(f"BA 과정에서 에러 발생 (건너뜁니다): {e}")
+        # 4. 필터링
+        threshold_val = np.percentile(flat_conf, 25.0) 
+        mask = (flat_conf >= threshold_val) & (flat_conf > 1e-5)
 
-        # 장면 중심화 (Centering)
-        scene_center = np.mean(flat_points[combined_mask], axis=0)
-        points_centered = flat_points - scene_center
+        # 5. 카메라 좌표계 변환
         cam_to_world = closed_form_inverse_se3(extrinsic)
-        cam_to_world[:, :3, 3] -= scene_center
+
+        # 6. 장면 중심화
+        valid_points = flat_points[mask]
+        if len(valid_points) > 0:
+            scene_center = np.mean(valid_points, axis=0)
+            flat_points = flat_points - scene_center
+            cam_to_world[:, :3, 3] -= scene_center
+        
+        print(f"추출된 포인트 수: {len(flat_points)} (유효: {mask.sum()})")
 
         return {
-            "points": points_centered,
+            "points": flat_points,
             "colors": flat_colors,
             "poses": cam_to_world,
             "intrinsics": intrinsic,
             "conf": flat_conf,
-            "mask": combined_mask,
+            "mask": mask,
             "image_shape": (vggt_res, vggt_res)
         }
 
     def save_to_ply(self, data, save_path):
-        """ .ply 저장 로직 """
         print(f"PLY 저장 중: {save_path}")
         mask = data["mask"]
-        pcd = trimesh.PointCloud(vertices=data["points"][mask], colors=data["colors"][mask])
+        pts = data["points"][mask]
+        cls = data["colors"][mask]
+        
+        if len(pts) == 0:
+            print("경고: 저장할 포인트가 없습니다.")
+            return
+
+        pcd = trimesh.PointCloud(vertices=pts, colors=cls)
         pcd.export(save_path)
 
     def start_visualization(self, data, port=8080):
-        """ Viser 시각화 서버 (모바일 접속 가능) """
         server = viser.ViserServer(host="0.0.0.0", port=port)
         mask = data["mask"]
         
+        # Viser에서 보여줄 때는 포인트 사이즈를 조금 키우면 데모와 비슷해집니다.
         server.scene.add_point_cloud(
             name="vggt_pcd",
             points=data["points"][mask],
             colors=data["colors"][mask],
-            point_size=0.001
+            point_size=0.005 # 기존 0.003 -> 0.005로 약간 키움
         )
         
         H, W = data["image_shape"]
@@ -145,31 +147,14 @@ class VGGTJetsonIntegrated:
             T_world_cam = viser_tf.SE3.from_matrix(pose)
             fov = 2 * np.arctan2(H/2, data["intrinsics"][i, 0, 0])
             
-            frustum = server.scene.add_camera_frustum(
+            server.scene.add_camera_frustum(
                 name=f"cameras/cam_{i}",
                 fov=fov,
                 aspect=W/H,
-                scale=0.1,
+                scale=0.15,
                 wxyz=T_world_cam.rotation().wxyz,
-                position=T_world_cam.translation(),
-                image=None # 성능을 위해 이미지는 생략하거나 원본 일부 로드
+                position=T_world_cam.translation()
             )
-        print(f"서버 주소: http://[Jetson_IP]:{port}")
+            
+        print(f"서버 주소: http://0.0.0.0:{port}")
         return server
-
-if __name__ == "__main__":
-    pipeline = VGGTJetsonIntegrated()
-    
-    # 1. 시각화 품질을 위해 mask_sky 인자 포함 (기본값 True)
-    input_scene = "./image_folder" 
-    results = pipeline.process_scene(input_scene, use_ba=False, mask_sky=True)
-    
-    # 2. 결과 저장
-    os.makedirs("./output", exist_ok=True)
-    pipeline.save_to_ply(results, "./output/reconstruction.ply")
-    
-    # 3. 서버 시작
-    vis_server = pipeline.start_visualization(results)
-    
-    while True:
-        time.sleep(1)

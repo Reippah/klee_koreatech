@@ -37,7 +37,7 @@ def main():
     pcd, _ = pcd.remove_statistical_outlier(nb_neighbors=40, std_ratio=1.0)
     
     # 균일한 면 생성을 위해 다운샘플링
-    voxel_size = 0.002
+    voxel_size = 0.0001
     pcd_ds = pcd.voxel_down_sample(voxel_size=voxel_size)
     print(f"[OK] Downsampled to {len(pcd_ds.points)} points.")
 
@@ -46,7 +46,7 @@ def main():
     
     # Alpha 파라미터 설정 (이 값이 클수록 구멍이 더 잘 메워집니다)
     # 0.01 ~ 0.05 사이에서 조절해 보세요.
-    alpha = 0.015
+    alpha = 0.02
     
     # create_from_point_cloud_alpha_shape는 Poisson과 달리 'Failed to close loop'가 뜨지 않습니다.
     mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_alpha_shape(pcd_ds, alpha)
