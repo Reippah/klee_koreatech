@@ -145,3 +145,13 @@
 2026-01-30 16:45:20,621 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] GPU 락 획득, VGGT 추론 시작
 2026-01-30 16:45:56,785 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] 추론 완료 (소요시간: 36.16초)
 2026-01-30 16:45:56,787 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] 파이프라인 정상 종료 (총 소요시간: 219.92초)
+2026-01-30 16:52:17,795 - VideoPipeline - INFO - VGGT 모델 초기화 중...
+2026-01-30 16:52:17,808 - dinov2 - INFO - using MLP layer as FFN
+2026-01-30 16:52:52,148 - VideoPipeline - INFO - VGGT 모델 준비 완료.
+2026-01-30 16:53:15,526 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] 전처리 단계 시작
+2026-01-30 16:53:17,528 - preprocessor - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:53:17,530 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] 전처리 완료
+2026-01-30 16:53:17,530 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] GPU 자원 대기 중...
+2026-01-30 16:53:17,530 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] GPU 락 획득, VGGT 추론 시작
+2026-01-30 16:53:55,462 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] 추론 및 저장 완료
+2026-01-30 16:53:55,462 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] 파이프라인 정상 종료 (총 39.94초)
