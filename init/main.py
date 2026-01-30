@@ -1,3 +1,5 @@
+import torch
+import gc
 import os
 import shutil
 import logging
@@ -84,6 +86,30 @@ def run_full_pipeline(task_id: str, file_path: str):
 
         with gpu_lock:
             task_db[task_id]["status"] = "STEP2_VGGT"
+
+            try:
+            # 1. 추론 모드 활성화 (메모리 약 30~50% 절약)
+            # Gradient 계산을 아예 차단하여 VRAM을 아낍니다.
+                with torch.inference_mode(): 
+                    vggt_results = vggt_processor.process_scene(
+                        image_folder=processed_folder, 
+                        use_ba=False, 
+                        mask_sky=True
+                    )
+                    
+                    output_dir = os.path.dirname(processed_folder) # .../result/
+                    output_ply_path = os.path.join(output_dir, f"reconstruction_{task_id}.ply")
+                    vggt_processor.save_to_ply(vggt_results, output_ply_path)
+
+            finally:
+                # 2. 결과 변수 삭제 및 메모리 강제 수거 (매우 중요)
+                # 작업이 끝나자마자 GPU 메모리를 OS에 반환합니다.
+                if 'vggt_results' in locals():
+                    del vggt_results
+                
+                gc.collect()             # Python 가비지 컬렉터 실행
+                torch.cuda.empty_cache() # PyTorch가 잡고 있는 미사용 GPU 캐시 비우기
+
             logger.info(f"[{task_id}] GPU 락 획득, VGGT 추론 시작")
             
             step2_start = time.time()

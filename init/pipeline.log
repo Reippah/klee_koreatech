@@ -92,3 +92,56 @@
 2026-01-30 16:03:21,858 - VideoPipeline - INFO - [973a9255-4811-4b33-88ef-cb35ada68238] GPU 락 획득, VGGT 추론 시작
 2026-01-30 16:04:03,092 - VideoPipeline - INFO - [973a9255-4811-4b33-88ef-cb35ada68238] 추론 완료 (소요시간: 41.23초)
 2026-01-30 16:04:03,092 - VideoPipeline - INFO - [973a9255-4811-4b33-88ef-cb35ada68238] 파이프라인 정상 종료 (총 소요시간: 44.07초)
+2026-01-30 16:23:09,263 - VideoPipeline - INFO - VGGT 모델 초기화 중...
+2026-01-30 16:23:09,276 - dinov2 - INFO - using MLP layer as FFN
+2026-01-30 16:23:32,870 - VideoPipeline - INFO - VGGT 모델 준비 완료.
+2026-01-30 16:23:42,910 - VideoPipeline - INFO - [388cdb29-fed5-4265-abde-613d056a103b] 전처리 단계 시작
+2026-01-30 16:23:44,972 - preprocessor - INFO - [388cdb29-fed5-4265-abde-613d056a103b] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:23:44,974 - VideoPipeline - INFO - [388cdb29-fed5-4265-abde-613d056a103b] 전처리 완료 (소요시간: 2.06초)
+2026-01-30 16:23:44,975 - VideoPipeline - INFO - [388cdb29-fed5-4265-abde-613d056a103b] GPU 자원 대기 중...
+2026-01-30 16:24:11,514 - VideoPipeline - INFO - [ee55cd25-e745-4f35-98b8-11eab5139f27] 전처리 단계 시작
+2026-01-30 16:24:13,516 - preprocessor - INFO - [ee55cd25-e745-4f35-98b8-11eab5139f27] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:24:13,518 - VideoPipeline - INFO - [ee55cd25-e745-4f35-98b8-11eab5139f27] 전처리 완료 (소요시간: 2.0초)
+2026-01-30 16:24:13,518 - VideoPipeline - INFO - [ee55cd25-e745-4f35-98b8-11eab5139f27] GPU 자원 대기 중...
+2026-01-30 16:24:22,514 - VideoPipeline - INFO - [388cdb29-fed5-4265-abde-613d056a103b] GPU 락 획득, VGGT 추론 시작
+2026-01-30 16:24:24,187 - VideoPipeline - ERROR - [388cdb29-fed5-4265-abde-613d056a103b] 파이프라인 에러: cannot identify image file '/mnt/sdcard/klee_koreatech/init/result/processed_388cdb29-fed5-4265-abde-613d056a103b/reconstruction.ply'
+2026-01-30 16:24:30,846 - VideoPipeline - INFO - [3cad4dd4-1e3c-44cb-b30d-f19826da2d11] 전처리 단계 시작
+2026-01-30 16:24:32,709 - preprocessor - INFO - [3cad4dd4-1e3c-44cb-b30d-f19826da2d11] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:24:32,709 - VideoPipeline - INFO - [3cad4dd4-1e3c-44cb-b30d-f19826da2d11] 전처리 완료 (소요시간: 1.86초)
+2026-01-30 16:24:32,709 - VideoPipeline - INFO - [3cad4dd4-1e3c-44cb-b30d-f19826da2d11] GPU 자원 대기 중...
+2026-01-30 16:25:00,749 - VideoPipeline - INFO - [ee55cd25-e745-4f35-98b8-11eab5139f27] GPU 락 획득, VGGT 추론 시작
+2026-01-30 16:25:01,685 - VideoPipeline - ERROR - [ee55cd25-e745-4f35-98b8-11eab5139f27] 파이프라인 에러: cannot identify image file '/mnt/sdcard/klee_koreatech/init/result/processed_ee55cd25-e745-4f35-98b8-11eab5139f27/reconstruction.ply'
+2026-01-30 16:25:37,533 - VideoPipeline - INFO - [3cad4dd4-1e3c-44cb-b30d-f19826da2d11] GPU 락 획득, VGGT 추론 시작
+2026-01-30 16:25:38,507 - VideoPipeline - ERROR - [3cad4dd4-1e3c-44cb-b30d-f19826da2d11] 파이프라인 에러: cannot identify image file '/mnt/sdcard/klee_koreatech/init/result/processed_3cad4dd4-1e3c-44cb-b30d-f19826da2d11/reconstruction.ply'
+2026-01-30 16:39:17,303 - VideoPipeline - INFO - [7761aefa-2993-488d-9add-c00c7b4c1afc] 전처리 단계 시작
+2026-01-30 16:39:19,020 - VideoPipeline - INFO - [d83898b5-dc37-486e-856d-4482d42d9c05] 전처리 단계 시작
+2026-01-30 16:39:19,242 - preprocessor - INFO - [7761aefa-2993-488d-9add-c00c7b4c1afc] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:39:19,242 - VideoPipeline - INFO - [7761aefa-2993-488d-9add-c00c7b4c1afc] 전처리 완료 (소요시간: 1.94초)
+2026-01-30 16:39:19,242 - VideoPipeline - INFO - [7761aefa-2993-488d-9add-c00c7b4c1afc] GPU 자원 대기 중...
+2026-01-30 16:39:20,958 - preprocessor - INFO - [d83898b5-dc37-486e-856d-4482d42d9c05] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:39:20,958 - VideoPipeline - INFO - [d83898b5-dc37-486e-856d-4482d42d9c05] 전처리 완료 (소요시간: 1.94초)
+2026-01-30 16:39:20,958 - VideoPipeline - INFO - [d83898b5-dc37-486e-856d-4482d42d9c05] GPU 자원 대기 중...
+2026-01-30 16:41:00,287 - VideoPipeline - INFO - VGGT 모델 초기화 중...
+2026-01-30 16:41:00,298 - dinov2 - INFO - using MLP layer as FFN
+2026-01-30 16:41:26,686 - VideoPipeline - INFO - VGGT 모델 준비 완료.
+2026-01-30 16:42:15,065 - VideoPipeline - INFO - [34f8a9eb-c2e7-497d-bceb-e01579b8a415] 전처리 단계 시작
+2026-01-30 16:42:16,002 - VideoPipeline - INFO - [76738bd0-f63e-427d-9fa2-3298393e792f] 전처리 단계 시작
+2026-01-30 16:42:16,870 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] 전처리 단계 시작
+2026-01-30 16:42:17,108 - preprocessor - INFO - [34f8a9eb-c2e7-497d-bceb-e01579b8a415] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:42:17,111 - VideoPipeline - INFO - [34f8a9eb-c2e7-497d-bceb-e01579b8a415] 전처리 완료 (소요시간: 2.05초)
+2026-01-30 16:42:17,111 - VideoPipeline - INFO - [34f8a9eb-c2e7-497d-bceb-e01579b8a415] GPU 자원 대기 중...
+2026-01-30 16:42:18,095 - preprocessor - INFO - [76738bd0-f63e-427d-9fa2-3298393e792f] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:42:18,097 - VideoPipeline - INFO - [76738bd0-f63e-427d-9fa2-3298393e792f] 전처리 완료 (소요시간: 2.09초)
+2026-01-30 16:42:18,097 - VideoPipeline - INFO - [76738bd0-f63e-427d-9fa2-3298393e792f] GPU 자원 대기 중...
+2026-01-30 16:42:18,921 - preprocessor - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] 작업 완료: 저장됨(32), 보정됨(1), 삭제됨(0)
+2026-01-30 16:42:18,924 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] 전처리 완료 (소요시간: 2.05초)
+2026-01-30 16:42:18,924 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] GPU 자원 대기 중...
+2026-01-30 16:42:56,767 - VideoPipeline - INFO - [34f8a9eb-c2e7-497d-bceb-e01579b8a415] GPU 락 획득, VGGT 추론 시작
+2026-01-30 16:43:31,689 - VideoPipeline - INFO - [34f8a9eb-c2e7-497d-bceb-e01579b8a415] 추론 완료 (소요시간: 34.92초)
+2026-01-30 16:43:31,689 - VideoPipeline - INFO - [34f8a9eb-c2e7-497d-bceb-e01579b8a415] 파이프라인 정상 종료 (총 소요시간: 76.62초)
+2026-01-30 16:44:07,021 - VideoPipeline - INFO - [76738bd0-f63e-427d-9fa2-3298393e792f] GPU 락 획득, VGGT 추론 시작
+2026-01-30 16:44:41,956 - VideoPipeline - INFO - [76738bd0-f63e-427d-9fa2-3298393e792f] 추론 완료 (소요시간: 34.93초)
+2026-01-30 16:44:41,957 - VideoPipeline - INFO - [76738bd0-f63e-427d-9fa2-3298393e792f] 파이프라인 정상 종료 (총 소요시간: 145.95초)
+2026-01-30 16:45:20,621 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] GPU 락 획득, VGGT 추론 시작
+2026-01-30 16:45:56,785 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] 추론 완료 (소요시간: 36.16초)
+2026-01-30 16:45:56,787 - VideoPipeline - INFO - [508ac62f-27ea-4710-92bc-9ab175fd6891] 파이프라인 정상 종료 (총 소요시간: 219.92초)
