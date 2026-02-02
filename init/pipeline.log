@@ -155,3 +155,54 @@
 2026-01-30 16:53:17,530 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] GPU 락 획득, VGGT 추론 시작
 2026-01-30 16:53:55,462 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] 추론 및 저장 완료
 2026-01-30 16:53:55,462 - VideoPipeline - INFO - [eedbadd1-69fd-4825-95c6-149ae3c61392] 파이프라인 정상 종료 (총 39.94초)
+2026-02-02 14:26:00,474 - VideoPipeline - INFO - VGGT 모델 초기화 중...
+2026-02-02 14:26:00,537 - dinov2 - INFO - using MLP layer as FFN
+2026-02-02 14:26:42,491 - VideoPipeline - INFO - VGGT 모델 준비 완료.
+2026-02-02 14:27:58,727 - VideoPipeline - INFO - [fae3de43-8ca1-404d-81b9-4834171838da] 전처리 단계 시작
+2026-02-02 14:27:58,986 - preprocessor - INFO - [fae3de43-8ca1-404d-81b9-4834171838da] 작업 완료: 저장됨(30), 보정됨(0), 삭제됨(0)
+2026-02-02 14:27:58,986 - VideoPipeline - INFO - [fae3de43-8ca1-404d-81b9-4834171838da] 전처리 완료
+2026-02-02 14:27:58,986 - VideoPipeline - INFO - [fae3de43-8ca1-404d-81b9-4834171838da] GPU 자원 대기 중...
+2026-02-02 14:27:58,986 - VideoPipeline - INFO - [fae3de43-8ca1-404d-81b9-4834171838da] GPU 락 획득, VGGT 추론 시작
+2026-02-02 14:28:35,220 - VideoPipeline - INFO - [fae3de43-8ca1-404d-81b9-4834171838da] 추론 및 저장 완료
+2026-02-02 14:28:35,221 - VideoPipeline - INFO - [fae3de43-8ca1-404d-81b9-4834171838da] 파이프라인 정상 종료 (총 36.49초)
+2026-02-02 15:18:38,919 - VideoPipeline - INFO - VGGT 모델 초기화 중...
+2026-02-02 15:18:38,932 - dinov2 - INFO - using MLP layer as FFN
+2026-02-02 15:19:02,892 - VideoPipeline - INFO - VGGT 모델 준비 완료.
+2026-02-02 15:19:04,968 - VideoPipeline - INFO - [d0b4c6cf-ab4a-42cd-9b6e-adeb27fb02cd] 전처리 단계 시작
+2026-02-02 15:19:06,056 - preprocessor - INFO - [d0b4c6cf-ab4a-42cd-9b6e-adeb27fb02cd] 전처리 완료: 저장됨(16), 보정됨(0), 삭제됨(0)
+2026-02-02 15:19:06,059 - VideoPipeline - INFO - [d0b4c6cf-ab4a-42cd-9b6e-adeb27fb02cd] 전처리 완료
+2026-02-02 15:19:06,060 - VideoPipeline - INFO - [d0b4c6cf-ab4a-42cd-9b6e-adeb27fb02cd] GPU 자원 대기 중...
+2026-02-02 15:19:06,060 - VideoPipeline - INFO - [d0b4c6cf-ab4a-42cd-9b6e-adeb27fb02cd] GPU 락 획득, VGGT 추론 시작
+2026-02-02 15:19:23,436 - VideoPipeline - INFO - [d0b4c6cf-ab4a-42cd-9b6e-adeb27fb02cd] 추론 및 저장 완료
+2026-02-02 15:19:23,437 - VideoPipeline - INFO - [d0b4c6cf-ab4a-42cd-9b6e-adeb27fb02cd] 파이프라인 정상 종료 (총 18.47초)
+2026-02-02 15:49:47,767 - VideoPipeline - INFO - [8494615d-013e-4086-b1bd-cb415dcdbe7f] 전처리 단계 시작
+2026-02-02 15:49:48,114 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0003.jpg (점수: 49.33)
+2026-02-02 15:49:48,142 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0004.jpg (점수: 43.80)
+2026-02-02 15:49:48,170 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0005.jpg (점수: 39.74)
+2026-02-02 15:49:48,198 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0006.jpg (점수: 44.09)
+2026-02-02 15:49:48,306 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0009.jpg (점수: 30.00)
+2026-02-02 15:49:48,334 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0010.jpg (점수: 38.94)
+2026-02-02 15:49:48,608 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0017.jpg (점수: 35.99)
+2026-02-02 15:49:48,636 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0018.jpg (점수: 39.81)
+2026-02-02 15:49:48,706 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0020.jpg (점수: 33.43)
+2026-02-02 15:49:48,733 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0021.jpg (점수: 26.82)
+2026-02-02 15:49:48,760 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0022.jpg (점수: 39.39)
+2026-02-02 15:49:48,788 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0023.jpg (점수: 40.72)
+2026-02-02 15:49:48,862 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0025.jpg (점수: 34.78)
+2026-02-02 15:49:48,890 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0026.jpg (점수: 33.87)
+2026-02-02 15:49:49,237 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0035.jpg (점수: 38.51)
+2026-02-02 15:49:49,264 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0036.jpg (점수: 34.82)
+2026-02-02 15:49:49,291 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0037.jpg (점수: 28.06)
+2026-02-02 15:49:49,318 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0038.jpg (점수: 32.60)
+2026-02-02 15:49:49,345 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0039.jpg (점수: 46.88)
+2026-02-02 15:49:49,451 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0042.jpg (점수: 44.08)
+2026-02-02 15:49:49,517 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0044.jpg (점수: 24.78)
+2026-02-02 15:49:49,544 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0045.jpg (점수: 41.53)
+2026-02-02 15:49:49,853 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0053.jpg (점수: 37.27)
+2026-02-02 15:49:49,920 - preprocessor - WARNING - 이미지 삭제 (심한 블러): frame_0055.jpg (점수: 25.99)
+2026-02-02 15:49:50,294 - preprocessor - INFO - [8494615d-013e-4086-b1bd-cb415dcdbe7f] 전처리 완료: 저장됨(41), 보정됨(25), 삭제됨(24)
+2026-02-02 15:49:50,297 - VideoPipeline - INFO - [8494615d-013e-4086-b1bd-cb415dcdbe7f] 전처리 완료
+2026-02-02 15:49:50,297 - VideoPipeline - INFO - [8494615d-013e-4086-b1bd-cb415dcdbe7f] GPU 자원 대기 중...
+2026-02-02 15:49:50,297 - VideoPipeline - INFO - [8494615d-013e-4086-b1bd-cb415dcdbe7f] GPU 락 획득, VGGT 추론 시작
+2026-02-02 15:50:41,209 - VideoPipeline - INFO - [8494615d-013e-4086-b1bd-cb415dcdbe7f] 추론 및 저장 완료
+2026-02-02 15:50:41,210 - VideoPipeline - INFO - [8494615d-013e-4086-b1bd-cb415dcdbe7f] 파이프라인 정상 종료 (총 53.44초)

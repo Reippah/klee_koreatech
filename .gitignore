@@ -1,7 +1,10 @@
 vggt/
+adop/ADOP/
+
 init/result/
 init/uploads/
+init/pipeline.log
+
 image_folder/
 output/
 mesh_output/
-adop/ADOP/
