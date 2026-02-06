@@ -63,7 +63,7 @@ logger = logging.getLogger("VideoPipeline")
 app = FastAPI()
 
 # 파일 저장 기본 경로 설정
-BASE_DATA_DIR = "/mnt/sdcard/klee_koreatech/init"
+BASE_DATA_DIR = "/home/viclab/klee_koreatech/init"
 # HuggingFace 모델 다운로드 경로
 MODEL_PATH = "https://huggingface.co/facebook/VGGT-1B/resolve/main/model.pt"
 
@@ -148,7 +148,7 @@ def run_full_pipeline(task_id: str, file_path: str):
             file_path=file_path, 
             task_id=task_id, 
             target_size=(518, 518), 
-            blur_threshold=100.0
+            blur_threshold=30.0
         )
         
         step1_end = time.time()
