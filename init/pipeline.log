@@ -988,3 +988,15 @@
 2026-02-06 14:32:12,256 - VideoPipeline - INFO - [d12dd7c0-a156-4d02-9aaf-da8ff38b3d56] GPU 락 획득, VGGT 추론 시작
 2026-02-06 14:33:45,803 - VideoPipeline - INFO - [d12dd7c0-a156-4d02-9aaf-da8ff38b3d56] 추론 및 저장 완료
 2026-02-06 14:33:45,804 - VideoPipeline - INFO - [d12dd7c0-a156-4d02-9aaf-da8ff38b3d56] 파이프라인 정상 종료 (총 98.55초)
+2026-02-06 14:57:39,591 - VideoPipeline - INFO - VGGT 모델 초기화 중...
+2026-02-06 14:57:39,600 - dinov2 - INFO - using MLP layer as FFN
+2026-02-06 14:57:58,628 - VideoPipeline - INFO - VGGT 모델 준비 완료.
+2026-02-06 14:59:02,928 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 전처리 단계 시작
+2026-02-06 14:59:03,397 - preprocessor - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 전체 220장 이미지 품질 분석 중...
+2026-02-06 14:59:09,893 - preprocessor - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 품질 상위 80장 선별 완료 (최대 제한: 80)
+2026-02-06 14:59:10,731 - preprocessor - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 전처리 완료: 최종 80장 저장 (보정 적용: 0장)
+2026-02-06 14:59:10,734 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 전처리 완료
+2026-02-06 14:59:10,734 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] GPU 자원 대기 중...
+2026-02-06 14:59:10,734 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] GPU 락 획득, VGGT 추론 시작
+2026-02-06 15:00:43,601 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 추론 및 저장 완료
+2026-02-06 15:00:43,602 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 파이프라인 정상 종료 (총 100.67초)

@@ -8,3 +8,4 @@ init/pipeline.log
 image_folder/
 output/
 mesh_output/
+mesh/*.ply

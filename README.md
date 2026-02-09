@@ -49,4 +49,40 @@ pip install <사용하고자 하는 모듈> --index-url https://pypi.jetson-ai-l
     일반적은 눈높이에서 방 전체를 한 바퀴, 천장과 벽이 만나는 모서리를 위주로 한 바퀴, 가구 밑부분과 바닥이 만나는 지점 위주로 한 바퀴
     (벽면에 포스트잇 등을 붙여 시각적 단서를 인위적으로 만들기)
 
+<<<<<<< HEAD
 4. 
+=======
+
+02.09 10:00~14:00
+MeshLab을 이용한 Poisson Reconstruction
+1.  법선 계산
+    Filters > Normals, Curvatures and Orientation > Compute normals for point sets
+    Neighbor num: 20
+    Apply 클릭
+2.  거미줄 치기 (Poisson Reconstruction)
+    Filters > Remeshing, Simplification and Reconstruction > Screened Poisson Surface Reconstruction
+    Reconstruction Depth : 11
+    Apply 클릭
+3.  거품 밀도 보기
+    Render > Show Quality Histogram
+    그래프를 보고 왼쪽 숫자를 기준으로 적절한 최소값/최대값 찾기
+4.  거품 제거
+    Filters > Selection > Select Vertices by Quality
+    아까 찾은 최소 최대값 넣기
+    Preview 클릭시 지워질 부분 확인 가능
+    이 상태로 바로 지우는 것이 아니라, Filters > Selection > Select Faces from Vertices 클릭 후 Apply 하고 Delete 눌러서 삭제
+5. obj 파일로 만들기
+    이 상태에서 렉 유발
+    File > Export Mesh As...
+    object 어쩌구로 파일 저장
+    저장된 파일로 열면 렉 X
+
+
+HostPC안의 meshlab_test 폴더 안에 pymeshlab을 사용한 obj 파일 생성 py 파일
+fire_extinguisher 기준 소요 시간 1분 53초
+
+meshlab으로 열려고 할 경우 시간이 좀 오래걸리고 튕기기도 함
+blender로 열 경우 안정적이지만 색을 따로 입혀야할 듯
+저는 점심먹으러 가겠습니다
+개선 부탁드려요
+>>>>>>> d591373 (delete preprocess.html)
