@@ -1000,3 +1000,39 @@
 2026-02-06 14:59:10,734 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] GPU 락 획득, VGGT 추론 시작
 2026-02-06 15:00:43,601 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 추론 및 저장 완료
 2026-02-06 15:00:43,602 - VideoPipeline - INFO - [e89c0cf5-2dda-42f5-8593-9f7d7569b9ef] 파이프라인 정상 종료 (총 100.67초)
+2026-02-10 15:32:38,740 - VideoPipeline - INFO - VGGT 모델 초기화 중...
+2026-02-10 15:32:38,792 - dinov2 - INFO - using MLP layer as FFN
+2026-02-10 15:33:18,648 - preprocessor - INFO - [65eab02d-5820-4ccf-8703-8c23b38e9329] 전체 220장 이미지 품질 분석 중...
+2026-02-10 15:33:25,067 - preprocessor - INFO - [65eab02d-5820-4ccf-8703-8c23b38e9329] 품질 상위 80장 선별 완료 (최대 제한: 80)
+2026-02-10 15:33:25,875 - preprocessor - INFO - [65eab02d-5820-4ccf-8703-8c23b38e9329] 전처리 완료: 최종 80장 저장 (보정 적용: 0장)
+2026-02-10 15:34:58,005 - VideoPipeline - INFO - [65eab02d-5820-4ccf-8703-8c23b38e9329] 공유 폴더로 파일 전송 중...
+2026-02-10 15:35:10,541 - VideoPipeline - INFO - [65eab02d-5820-4ccf-8703-8c23b38e9329] SSH 명령 실행: ssh vic05@192.168.0.3 python3 /home/vic05/meshlab_test/meshlab_test_pls.py /home/vic05/meshlab_test/raw_65eab02d-5820-4ccf-8703-8c23b38e9329.ply /home/vic05/meshlab_test/cleaned_65eab02d-5820-4ccf-8703-8c23b38e9329.obj
+2026-02-10 15:42:27,728 - VideoPipeline - INFO - [65eab02d-5820-4ccf-8703-8c23b38e9329] HostPC 작업 완료.
+2026-02-10 15:45:41,026 - VideoPipeline - INFO - [65eab02d-5820-4ccf-8703-8c23b38e9329] 클리닝된 OBJ 파일 확보 성공.
+2026-02-10 15:45:41,966 - VideoPipeline - INFO - [65eab02d-5820-4ccf-8703-8c23b38e9329] 파이프라인 종료 (총 743.8초)
+2026-02-10 15:54:34,858 - VideoPipeline - INFO - VGGT 모델 초기화 중...
+2026-02-10 15:54:34,870 - dinov2 - INFO - using MLP layer as FFN
+2026-02-10 16:00:30,847 - preprocessor - INFO - [a0e9737c-ff42-4e3d-aa5e-83797f84c4aa] 전체 12장 이미지 품질 분석 중...
+2026-02-10 16:00:33,118 - preprocessor - INFO - [a0e9737c-ff42-4e3d-aa5e-83797f84c4aa] 품질 상위 12장 선별 완료 (최대 제한: 80)
+2026-02-10 16:00:33,445 - preprocessor - INFO - [a0e9737c-ff42-4e3d-aa5e-83797f84c4aa] 전처리 완료: 최종 12장 저장 (보정 적용: 0장)
+2026-02-10 16:00:43,517 - VideoPipeline - INFO - [a0e9737c-ff42-4e3d-aa5e-83797f84c4aa] 공유 폴더로 파일 전송 중...
+2026-02-10 16:00:46,450 - VideoPipeline - INFO - [a0e9737c-ff42-4e3d-aa5e-83797f84c4aa] SSH 명령 실행: ssh vic05@192.168.0.3 python3 /home/vic05/meshlab_test/meshlab_test_pls.py /home/vic05/meshlab_test/raw_a0e9737c-ff42-4e3d-aa5e-83797f84c4aa.ply /home/vic05/meshlab_test/cleaned_a0e9737c-ff42-4e3d-aa5e-83797f84c4aa.obj
+2026-02-10 16:01:49,175 - VideoPipeline - INFO - [a0e9737c-ff42-4e3d-aa5e-83797f84c4aa] HostPC 작업 완료.
+2026-02-10 16:02:13,882 - VideoPipeline - INFO - [a0e9737c-ff42-4e3d-aa5e-83797f84c4aa] 클리닝된 OBJ 파일 확보 성공.
+2026-02-10 16:02:14,056 - VideoPipeline - INFO - [a0e9737c-ff42-4e3d-aa5e-83797f84c4aa] 파이프라인 종료 (총 103.35초)
+2026-02-10 16:17:45,145 - preprocessor - INFO - [5c711d85-0d0c-45f6-8bbb-95e9e2eba881] 전체 17장 이미지 품질 분석 중...
+2026-02-10 16:17:45,543 - preprocessor - INFO - [5c711d85-0d0c-45f6-8bbb-95e9e2eba881] 품질 상위 17장 선별 완료 (최대 제한: 80)
+2026-02-10 16:17:45,692 - preprocessor - INFO - [5c711d85-0d0c-45f6-8bbb-95e9e2eba881] 전처리 완료: 최종 17장 저장 (보정 적용: 0장)
+2026-02-10 16:17:57,344 - VideoPipeline - INFO - [5c711d85-0d0c-45f6-8bbb-95e9e2eba881] 공유 폴더로 파일 전송 중...
+2026-02-10 16:18:00,005 - VideoPipeline - INFO - [5c711d85-0d0c-45f6-8bbb-95e9e2eba881] SSH 명령 실행: ssh vic05@192.168.0.3 python3 /home/vic05/meshlab_test/meshlab_test_pls.py /home/vic05/meshlab_test/raw_5c711d85-0d0c-45f6-8bbb-95e9e2eba881.ply /home/vic05/meshlab_test/cleaned_5c711d85-0d0c-45f6-8bbb-95e9e2eba881.obj
+2026-02-10 16:19:17,555 - VideoPipeline - INFO - [5c711d85-0d0c-45f6-8bbb-95e9e2eba881] HostPC 작업 완료.
+2026-02-10 16:19:41,540 - VideoPipeline - INFO - [5c711d85-0d0c-45f6-8bbb-95e9e2eba881] 클리닝된 OBJ 파일 확보 성공.
+2026-02-10 16:19:41,739 - VideoPipeline - INFO - [5c711d85-0d0c-45f6-8bbb-95e9e2eba881] 파이프라인 종료 (총 116.67초)
+2026-02-10 16:36:34,664 - preprocessor - INFO - [038bfba2-79b2-4d62-a856-161e0e6b7e24] 전체 30장 이미지 품질 분석 중...
+2026-02-10 16:36:35,463 - preprocessor - INFO - [038bfba2-79b2-4d62-a856-161e0e6b7e24] 품질 상위 30장 선별 완료 (최대 제한: 80)
+2026-02-10 16:36:35,708 - preprocessor - INFO - [038bfba2-79b2-4d62-a856-161e0e6b7e24] 전처리 완료: 최종 30장 저장 (보정 적용: 0장)
+2026-02-10 16:36:58,737 - VideoPipeline - INFO - [038bfba2-79b2-4d62-a856-161e0e6b7e24] 공유 폴더로 파일 전송 중...
+2026-02-10 16:37:04,427 - VideoPipeline - INFO - [038bfba2-79b2-4d62-a856-161e0e6b7e24] SSH 명령 실행: ssh vic05@192.168.0.3 python3 /home/vic05/meshlab_test/meshlab_test_pls.py /home/vic05/meshlab_test/raw_038bfba2-79b2-4d62-a856-161e0e6b7e24.ply /home/vic05/meshlab_test/cleaned_038bfba2-79b2-4d62-a856-161e0e6b7e24.obj
+2026-02-10 16:40:22,192 - VideoPipeline - INFO - [038bfba2-79b2-4d62-a856-161e0e6b7e24] HostPC 작업 완료.
+2026-02-10 16:41:56,227 - VideoPipeline - INFO - [038bfba2-79b2-4d62-a856-161e0e6b7e24] 클리닝된 OBJ 파일 확보 성공.
+2026-02-10 16:41:56,699 - VideoPipeline - INFO - [038bfba2-79b2-4d62-a856-161e0e6b7e24] 파이프라인 종료 (총 322.22초)

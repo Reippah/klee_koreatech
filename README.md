@@ -23,7 +23,7 @@ pip install <사용하고자 하는 모듈> --index-url https://pypi.jetson-ai-l
 0.  사물인 경우, 사진의 정중앙에 오도록 유지
     사물인 경우, 주변에 약간의 여백을 두기
     사물인 경우, 사물에 초점을 맞춰 노출과 초점을 고정하기
-    사물인 경우, 무늬가 있는 식탁보나 신문기를 깔아두기
+    사물인 경우, 무늬가 있는 식탁보나 신문지를 깔아두기
     너무 강한 직사광선 보다는 실내의 부드러운 전등빛으로 그림자 최소화
     한 장의 사진과 다음 사진 사이에는 70~80% 이상의 겹치는 영역이 있어야함
     광각렌즈 사용 X
@@ -76,3 +76,12 @@ MeshLab을 이용한 Poisson Reconstruction
 
 HostPC안의 meshlab_test 폴더 안에 pymeshlab을 사용한 obj 파일 생성 py 파일
 fire_extinguisher 기준 소요 시간 1분 53초
+
+blender 모험기
+0.  Pointcloud 보이게 하기
+    회색 모델링이 끝이고
+    shading 사용해서 색을 입혀야 포인트 클라우드 볼 수 있음
+1.  Points to Volume 방식
+    글자가 안 보일 정도의 무난한 퀄리티
+2.  Cube 방식
+    기억 안 남
