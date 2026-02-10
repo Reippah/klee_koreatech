@@ -49,10 +49,6 @@ pip install <사용하고자 하는 모듈> --index-url https://pypi.jetson-ai-l
     일반적은 눈높이에서 방 전체를 한 바퀴, 천장과 벽이 만나는 모서리를 위주로 한 바퀴, 가구 밑부분과 바닥이 만나는 지점 위주로 한 바퀴
     (벽면에 포스트잇 등을 붙여 시각적 단서를 인위적으로 만들기)
 
-<<<<<<< HEAD
-4. 
-=======
-
 02.09 10:00~14:00
 MeshLab을 이용한 Poisson Reconstruction
 1.  법선 계산
@@ -80,9 +76,3 @@ MeshLab을 이용한 Poisson Reconstruction
 
 HostPC안의 meshlab_test 폴더 안에 pymeshlab을 사용한 obj 파일 생성 py 파일
 fire_extinguisher 기준 소요 시간 1분 53초
-
-meshlab으로 열려고 할 경우 시간이 좀 오래걸리고 튕기기도 함
-blender로 열 경우 안정적이지만 색을 따로 입혀야할 듯
-저는 점심먹으러 가겠습니다
-개선 부탁드려요
->>>>>>> d591373 (delete preprocess.html)
