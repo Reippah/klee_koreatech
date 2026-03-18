@@ -1,0 +1,11 @@
+# SAM2 배경 제거 스크립트 (sam2_background_removal.py) 의존성
+# 사용: pip install -r scripts/requirements_sam2_bg.txt
+
+torch>=2.0.0
+torchvision>=0.15.0
+numpy
+Pillow
+
+# SAM2 (둘 중 하나)
+# 1) 로컬 설치: cd C:\Users\dongh\Downloads\sam2-main\sam2-main && pip install -e ".[notebooks]"
+# 2) 또는: pip install 'git+https://github.com/facebookresearch/sam2.git'

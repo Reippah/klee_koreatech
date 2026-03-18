@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# SAM3 모델 (Hugging Face, ~6.5GB)
+/models/sam3/*.safetensors
+/models/sam3/*.pt
